@@ -1,3 +1,433 @@
 <?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.org/tmo/tmo.owl"
+     xml:base="http://purl.org/tmo/tmo.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:tmo="http://purl.org/tmo/tmo.owl"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:tmo1="http://purl.org/tmo/tmo.owl#">
+    <owl:Ontology rdf:about="http://purl.org/tmo/tmo.owl">
+        <rdfs:comment>This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/</rdfs:comment>
+    </owl:Ontology>
+    
 
-<!-- comming soon -->
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasCollection -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasCollection">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#DocumentCollection"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasConcept -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasConcept">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#Document"/>
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Concept"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasDocument -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasDocument">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#DocumentCollection"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasDocumentScoreRelationship -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasDocumentScoreRelationship">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#DocumentScore"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Document"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasDomain1 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasDomain1">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#CrossDomain"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasDomain2 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasDomain2">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#CrossDomain"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasMappedTopics -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasMappedTopics">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicMapping"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#TopicPair"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasMapping -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasMapping">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#CrossDomain"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#TopicMapping"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasTopic -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasTopic">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicPair"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasTopicScoreRelationship -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/tmo/tmo.owl#hasTopicScoreRelationship">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicScore"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Concept"/>
+        <rdfs:range rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TopicCount -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/tmo/tmo.owl#TopicCount">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasCrossDomainScore -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/tmo/tmo.owl#hasCrossDomainScore">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicPair"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasScore -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/tmo/tmo.owl#hasScore">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#DocumentScore"/>
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#TopicScore"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#hasTopicProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/tmo/tmo.owl#hasTopicProbability">
+        <rdfs:domain rdf:resource="http://purl.org/tmo/tmo.owl#Concept"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Concept -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#Concept"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CrossDomain -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#CrossDomain"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Document -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#Document"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#DocumentCollection -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#DocumentCollection"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#DocumentScore -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#DocumentScore">
+        <rdfs:subClassOf rdf:resource="http://purl.org/tmo/tmo.owl#Score"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#PreDefinedConcept -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#PreDefinedConcept">
+        <rdfs:subClassOf rdf:resource="http://purl.org/tmo/tmo.owl#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Score -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#Score"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Topic -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#Topic"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TopicMapping -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#TopicMapping"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TopicModel -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#TopicModel"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TopicPair -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#TopicPair"/>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TopicScore -->
+
+    <owl:Class rdf:about="http://purl.org/tmo/tmo.owl#TopicScore">
+        <rdfs:subClassOf rdf:resource="http://purl.org/tmo/tmo.owl#Score"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CryptoSec -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CryptoSec">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#DocumentCollection"/>
+        <tmo1:hasDocument rdf:resource="http://purl.org/tmo/tmo.owl#FooCrypto"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CryptoT1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CryptoT1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+        <tmo1:hasConcept rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CryptoT1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CryptoT1_1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicScore"/>
+        <tmo1:hasTopicScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#CryptoT1"/>
+        <tmo1:hasTopicScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+        <tmo1:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8</tmo1:hasScore>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CryptoT1_D1_Score -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CryptoT1_D1_Score">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#DocumentScore"/>
+        <tmo1:hasDocumentScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#CryptoT1"/>
+        <tmo1:hasDocumentScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#FooCrypto"/>
+        <tmo1:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9</tmo1:hasScore>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CryptoTopicModel1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CryptoTopicModel1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+        <tmo1:hasTopic rdf:resource="http://purl.org/tmo/tmo.owl#CryptoT1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Crypto_Symantec -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#Crypto_Symantec">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#CrossDomain"/>
+        <tmo1:hasMapping rdf:resource="http://purl.org/tmo/tmo.owl#TM1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#CyberSecurity -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#CyberSecurity">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#PreDefinedConcept"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#FooCrypto -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#FooCrypto">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#Document"/>
+        <tmo1:hasConcept rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#FooSymantec -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#FooSymantec">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#Document"/>
+        <tmo1:hasConcept rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Mobile_Attack -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#Mobile_Attack">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#PreDefinedConcept"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#Symantec -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#Symantec">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#DocumentCollection"/>
+        <tmo1:hasDocument rdf:resource="http://purl.org/tmo/tmo.owl#FooSymantec"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#SymantecT1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#SymantecT1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#Topic"/>
+        <tmo1:hasConcept rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#SymantecT1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#SymantecT1_1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicScore"/>
+        <tmo1:hasTopicScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#CyberSecurity"/>
+        <tmo1:hasTopicScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#SymantecT1"/>
+        <tmo1:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.75</tmo1:hasScore>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#SymantecT1_D1_Score -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#SymantecT1_D1_Score">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#DocumentScore"/>
+        <tmo1:hasDocumentScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#FooSymantec"/>
+        <tmo1:hasDocumentScoreRelationship rdf:resource="http://purl.org/tmo/tmo.owl#SymantecT1"/>
+        <tmo1:hasScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.89</tmo1:hasScore>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#SymantecTopicModel1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#SymantecTopicModel1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicModel"/>
+        <tmo1:hasTopic rdf:resource="http://purl.org/tmo/tmo.owl#SymantecT1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TM1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#TM1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicMapping"/>
+        <tmo1:hasMappedTopics rdf:resource="http://purl.org/tmo/tmo.owl#TM1_TP1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/tmo/tmo.owl#TM1_TP1 -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/tmo/tmo.owl#TM1_TP1">
+        <rdf:type rdf:resource="http://purl.org/tmo/tmo.owl#TopicPair"/>
+        <tmo1:hasTopic rdf:resource="http://purl.org/tmo/tmo.owl#CryptoT1"/>
+        <tmo1:hasTopic rdf:resource="http://purl.org/tmo/tmo.owl#SymantecT1"/>
+        <tmo1:hasCrossDomainScore rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9</tmo1:hasCrossDomainScore>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
