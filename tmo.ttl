@@ -1,279 +1,214 @@
-@prefix : <http://purl.org/tmo/tmo.owl> .
+@prefix : <http://purl.org/tmo#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix tmo: <http://purl.org/tmo/tmo.owl> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://purl.org/tmo/tmo.owl> .
+@base <http://www.semanticweb.org/jsleeman/ontologies/2019/3/untitled-ontology-9> .
 
-<http://purl.org/tmo/tmo.owl> rdf:type owl:Ontology ;
-                               rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
+<http://www.semanticweb.org/jsleeman/ontologies/2019/3/untitled-ontology-9> rdf:type owl:Ontology ;
+                                                                             rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://purl.org/tmo/tmo.owl#hasCollection
+###  http://purl.org/tmo#hasCollection
 :hasCollection rdf:type owl:ObjectProperty ;
                rdfs:domain :TopicModel ;
                rdfs:range :DocumentCollection .
 
 
-###  http://purl.org/tmo/tmo.owl#hasConcept
+###  http://purl.org/tmo#hasConcept
 :hasConcept rdf:type owl:ObjectProperty ;
-            rdfs:domain :Document ,
-                        :Topic ;
-            rdfs:range :Concept .
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Document
+                                        :Topic
+                                      )
+                        ] ;
+            rdfs:range :Domain_Concept .
 
 
-###  http://purl.org/tmo/tmo.owl#hasDocument
+###  http://purl.org/tmo#hasDocument
 :hasDocument rdf:type owl:ObjectProperty ;
              rdfs:domain :DocumentCollection ;
              rdfs:range :Document .
 
 
-###  http://purl.org/tmo/tmo.owl#hasDocumentScoreRelationship
+###  http://purl.org/tmo#hasDocumentScoreRelationship
 :hasDocumentScoreRelationship rdf:type owl:ObjectProperty ;
                               rdfs:domain :DocumentScore ;
-                              rdfs:range :Document ,
-                                         :Topic .
+                              rdfs:range [ rdf:type owl:Class ;
+                                           owl:unionOf ( :Document
+                                                         :Topic
+                                                       )
+                                         ] .
 
 
-###  http://purl.org/tmo/tmo.owl#hasDomain1
+###  http://purl.org/tmo#hasDomain1
 :hasDomain1 rdf:type owl:ObjectProperty ;
             rdfs:domain :CrossDomain ;
             rdfs:range :TopicModel .
 
 
-###  http://purl.org/tmo/tmo.owl#hasDomain2
+###  http://purl.org/tmo#hasDomain2
 :hasDomain2 rdf:type owl:ObjectProperty ;
             rdfs:domain :CrossDomain ;
             rdfs:range :TopicModel .
 
 
-###  http://purl.org/tmo/tmo.owl#hasMappedTopics
+###  http://purl.org/tmo#hasKeyWord
+:hasKeyWord rdf:type owl:ObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Document
+                                        :Topic
+                                      )
+                        ] ;
+            rdfs:range :KeyWord .
+
+
+###  http://purl.org/tmo#hasMappedTopics
 :hasMappedTopics rdf:type owl:ObjectProperty ;
                  rdfs:domain :TopicMapping ;
                  rdfs:range :TopicPair .
 
 
-###  http://purl.org/tmo/tmo.owl#hasMapping
+###  http://purl.org/tmo#hasMapping
 :hasMapping rdf:type owl:ObjectProperty ;
             rdfs:domain :CrossDomain ;
             rdfs:range :TopicMapping .
 
 
-###  http://purl.org/tmo/tmo.owl#hasTopic
+###  http://purl.org/tmo#hasTopic
 :hasTopic rdf:type owl:ObjectProperty ;
-          rdfs:domain :TopicModel ,
-                      :TopicPair ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :TopicModel
+                                      :TopicPair
+                                    )
+                      ] ;
           rdfs:range :Topic .
 
 
-###  http://purl.org/tmo/tmo.owl#hasTopicScoreRelationship
+###  http://purl.org/tmo#hasTopicScoreRelationship
 :hasTopicScoreRelationship rdf:type owl:ObjectProperty ;
                            rdfs:domain :TopicScore ;
-                           rdfs:range :Concept ,
-                                      :Topic .
+                           rdfs:range [ rdf:type owl:Class ;
+                                        owl:unionOf ( :KeyWord
+                                                      :Topic
+                                                    )
+                                      ] .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://purl.org/tmo/tmo.owl#TopicCount
-:TopicCount rdf:type owl:DatatypeProperty ;
-            rdfs:domain :TopicModel ;
-            rdfs:range xsd:int .
+###  http://purl.org/tmo#hasAuthor
+:hasAuthor rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Document ;
+           rdfs:range xsd:string .
 
 
-###  http://purl.org/tmo/tmo.owl#hasCrossDomainScore
-:hasCrossDomainScore rdf:type owl:DatatypeProperty ;
-                     rdfs:domain :TopicPair ;
-                     rdfs:range xsd:double .
+###  http://purl.org/tmo#hasDate
+:hasDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Document
+                                     :TopicModel
+                                   )
+                     ] ;
+         rdfs:range xsd:string .
 
 
-###  http://purl.org/tmo/tmo.owl#hasScore
+###  http://purl.org/tmo#hasDateRange
+:hasDateRange rdf:type owl:DatatypeProperty ;
+              rdfs:domain :DocumentCollection ;
+              rdfs:range xsd:string .
+
+
+###  http://purl.org/tmo#hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ;
+                rdfs:domain :DocumentCollection ;
+                rdfs:range xsd:string .
+
+
+###  http://purl.org/tmo#hasDivergenceScore
+:hasDivergenceScore rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain :TopicPair ;
+                    rdfs:range xsd:double .
+
+
+###  http://purl.org/tmo#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
-          rdfs:domain :DocumentScore ,
-                      :TopicScore ;
+          rdfs:domain :Score ;
           rdfs:range xsd:double .
 
 
-###  http://purl.org/tmo/tmo.owl#hasTopicProbability
-:hasTopicProbability rdf:type owl:DatatypeProperty ;
-                     rdfs:domain :Concept ;
-                     rdfs:range xsd:double .
+###  http://purl.org/tmo#hasTitle
+:hasTitle rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Document ;
+          rdfs:range xsd:string .
+
+
+###  http://purl.org/tmo#hasTopicCount
+:hasTopicCount rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Topic ;
+               rdfs:range xsd:int .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://purl.org/tmo/tmo.owl#Concept
-:Concept rdf:type owl:Class .
-
-
-###  http://purl.org/tmo/tmo.owl#CrossDomain
+###  http://purl.org/tmo#CrossDomain
 :CrossDomain rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#Document
+###  http://purl.org/tmo#Document
 :Document rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#DocumentCollection
+###  http://purl.org/tmo#DocumentCollection
 :DocumentCollection rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#DocumentScore
+###  http://purl.org/tmo#DocumentScore
 :DocumentScore rdf:type owl:Class ;
                rdfs:subClassOf :Score .
 
 
-###  http://purl.org/tmo/tmo.owl#PreDefinedConcept
-:PreDefinedConcept rdf:type owl:Class ;
-                   rdfs:subClassOf :Concept .
+###  http://purl.org/tmo#Domain_Concept
+:Domain_Concept rdf:type owl:Class ;
+                rdfs:subClassOf :KeyWord .
 
 
-###  http://purl.org/tmo/tmo.owl#Score
+###  http://purl.org/tmo#KeyWord
+:KeyWord rdf:type owl:Class .
+
+
+###  http://purl.org/tmo#Score
 :Score rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#Topic
+###  http://purl.org/tmo#Topic
 :Topic rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#TopicMapping
+###  http://purl.org/tmo#TopicMapping
 :TopicMapping rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#TopicModel
+###  http://purl.org/tmo#TopicModel
 :TopicModel rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#TopicPair
+###  http://purl.org/tmo#TopicPair
 :TopicPair rdf:type owl:Class .
 
 
-###  http://purl.org/tmo/tmo.owl#TopicScore
+###  http://purl.org/tmo#TopicScore
 :TopicScore rdf:type owl:Class ;
             rdfs:subClassOf :Score .
-
-
-#################################################################
-#    Individuals
-#################################################################
-
-###  http://purl.org/tmo/tmo.owl#CryptoSec
-:CryptoSec rdf:type owl:NamedIndividual ,
-                    :DocumentCollection ;
-           :hasDocument :FooCrypto .
-
-
-###  http://purl.org/tmo/tmo.owl#CryptoT1
-:CryptoT1 rdf:type owl:NamedIndividual ,
-                   :Topic ;
-          :hasConcept :CyberSecurity .
-
-
-###  http://purl.org/tmo/tmo.owl#CryptoT1_1
-:CryptoT1_1 rdf:type owl:NamedIndividual ,
-                     :TopicScore ;
-            :hasTopicScoreRelationship :CryptoT1 ,
-                                       :CyberSecurity ;
-            :hasScore "0.8"^^xsd:float .
-
-
-###  http://purl.org/tmo/tmo.owl#CryptoT1_D1_Score
-:CryptoT1_D1_Score rdf:type owl:NamedIndividual ,
-                            :DocumentScore ;
-                   :hasDocumentScoreRelationship :CryptoT1 ,
-                                                 :FooCrypto ;
-                   :hasScore "0.9"^^xsd:float .
-
-
-###  http://purl.org/tmo/tmo.owl#CryptoTopicModel1
-:CryptoTopicModel1 rdf:type owl:NamedIndividual ,
-                            :TopicModel ;
-                   :hasTopic :CryptoT1 .
-
-
-###  http://purl.org/tmo/tmo.owl#Crypto_Symantec
-:Crypto_Symantec rdf:type owl:NamedIndividual ,
-                          :CrossDomain ;
-                 :hasMapping :TM1 .
-
-
-###  http://purl.org/tmo/tmo.owl#CyberSecurity
-:CyberSecurity rdf:type owl:NamedIndividual ,
-                        :PreDefinedConcept .
-
-
-###  http://purl.org/tmo/tmo.owl#FooCrypto
-:FooCrypto rdf:type owl:NamedIndividual ,
-                    :Document ;
-           :hasConcept :CyberSecurity .
-
-
-###  http://purl.org/tmo/tmo.owl#FooSymantec
-:FooSymantec rdf:type owl:NamedIndividual ,
-                      :Document ;
-             :hasConcept :CyberSecurity .
-
-
-###  http://purl.org/tmo/tmo.owl#Mobile_Attack
-:Mobile_Attack rdf:type owl:NamedIndividual ,
-                        :PreDefinedConcept .
-
-
-###  http://purl.org/tmo/tmo.owl#Symantec
-:Symantec rdf:type owl:NamedIndividual ,
-                   :DocumentCollection ;
-          :hasDocument :FooSymantec .
-
-
-###  http://purl.org/tmo/tmo.owl#SymantecT1
-:SymantecT1 rdf:type owl:NamedIndividual ,
-                     :Topic ;
-            :hasConcept :CyberSecurity .
-
-
-###  http://purl.org/tmo/tmo.owl#SymantecT1_1
-:SymantecT1_1 rdf:type owl:NamedIndividual ,
-                       :TopicScore ;
-              :hasTopicScoreRelationship :CyberSecurity ,
-                                         :SymantecT1 ;
-              :hasScore "0.75"^^xsd:float .
-
-
-###  http://purl.org/tmo/tmo.owl#SymantecT1_D1_Score
-:SymantecT1_D1_Score rdf:type owl:NamedIndividual ,
-                              :DocumentScore ;
-                     :hasDocumentScoreRelationship :FooSymantec ,
-                                                   :SymantecT1 ;
-                     :hasScore "0.89"^^xsd:float .
-
-
-###  http://purl.org/tmo/tmo.owl#SymantecTopicModel1
-:SymantecTopicModel1 rdf:type owl:NamedIndividual ,
-                              :TopicModel ;
-                     :hasTopic :SymantecT1 .
-
-
-###  http://purl.org/tmo/tmo.owl#TM1
-:TM1 rdf:type owl:NamedIndividual ,
-              :TopicMapping ;
-     :hasMappedTopics :TM1_TP1 .
-
-
-###  http://purl.org/tmo/tmo.owl#TM1_TP1
-:TM1_TP1 rdf:type owl:NamedIndividual ,
-                  :TopicPair ;
-         :hasTopic :CryptoT1 ,
-                   :SymantecT1 ;
-         :hasCrossDomainScore "0.9"^^xsd:float .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
