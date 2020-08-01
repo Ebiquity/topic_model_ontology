@@ -1,0 +1,125 @@
+@prefix : <http://purl.org/tmon/example1#> .
+@prefix tmo: <http://purl.org/tmon#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.org/tmon/example1#> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+:Computer rdf:type owl:NamedIndividual ,
+                   tmo:KeyWord .
+
+:CryptoSec rdf:type owl:NamedIndividual ,
+                    tmo:DocumentCollection ;
+           tmo:hasDocument :FooCrypto ;
+           tmo:hasDescription "Arxiv Cryptographic and Security Documents"^^xsd:string .
+
+:CryptoT1 rdf:type owl:NamedIndividual ,
+                   tmo:Topic ;
+          tmo:hasConcept :CyberSecurity ;
+         tmo:hasKeyWord :Mobile .
+
+:CryptoT1_1 rdf:type owl:NamedIndividual ,
+                     tmo:TopicScore ;
+            tmo:hasTopicScoreRelationship :CryptoT1 ,
+                                       :CyberSecurity ;
+            tmo:hasScore "0.8"^^xsd:double .
+
+
+:CryptoT1_D1_Score rdf:type owl:NamedIndividual ,
+                            tmo:DocumentScore ;
+                   tmo:hasDocumentScoreRelationship :CryptoT1 ,
+                                                 :FooCrypto ;
+                   tmo:hasScore "0.9"^^xsd:float .
+
+
+:CryptoTopicModel1 rdf:type owl:NamedIndividual ,
+                            tmo:TopicModel ;
+                   tmo:hasTopic :CryptoT1 .
+
+
+:Crypto_Symantec rdf:type owl:NamedIndividual ,
+                          tmo:CrossDomain ;
+                 tmo:hasMapping :TM1 .
+
+:CrytoT1_2 rdf:type owl:NamedIndividual ,
+                    tmo:TopicScore ;
+           tmo:hasTopicScoreRelationship :CryptoT1 ,
+                                      :Mobile ;
+           tmo:hasScore "0.75"^^xsd:double .
+
+
+:CyberSecurity rdf:type owl:NamedIndividual ,
+                        tmo:Domain_Concept .
+
+
+:FooCrypto rdf:type owl:NamedIndividual ,
+                    tmo:Document ;
+           tmo:hasConcept :CyberSecurity ;
+           tmo:hasKeyWord :Mobile .
+
+
+:FooSymantec rdf:type owl:NamedIndividual ,
+                      tmo:Document ;
+             tmo:hasConcept :CyberSecurity ;
+             tmo:hasKeyWord :Mobile ;
+             tmo:hasAuthor "Foo Author"^^xsd:string ;
+             tmo:hasDate "2017"^^xsd:string ;
+             tmo:hasTitle "Foo Title"^^xsd:string .
+
+:Mobile rdf:type owl:NamedIndividual ,
+                 tmo:KeyWord .
+
+
+:Mobile_Attack rdf:type owl:NamedIndividual ,
+                        tmo:Domain_Concept .
+
+
+:Symantec rdf:type owl:NamedIndividual ,
+                   tmo:DocumentCollection ;
+          tmo:hasDocument :FooSymantec ;
+          tmo:hasDescription "Symantec Documents"^^xsd:string .
+
+
+:SymantecT1 rdf:type owl:NamedIndividual ,
+                     tmo:Topic ;
+            tmo:hasConcept :CyberSecurity ;
+            tmo:hasKeyWord :Mobile .
+
+:SymantecT1_1 rdf:type owl:NamedIndividual ,
+                       tmo:TopicScore ;
+              tmo:hasTopicScoreRelationship :CyberSecurity ,
+                                         :SymantecT1 ;
+              tmo:hasScore "0.75"^^xsd:double .
+
+
+:SymantecT1_D1_Score rdf:type owl:NamedIndividual ,
+                              tmo:DocumentScore ;
+                     tmo:hasDocumentScoreRelationship :FooSymantec ,
+                                                   :SymantecT1 ;
+                     tmo:hasScore "0.89"^^xsd:float .
+
+
+:SymantecTopicModel1 rdf:type owl:NamedIndividual ,
+                              tmo:TopicModel ;
+                     tmo:hasTopic :SymantecT1 .
+
+
+:TM1 rdf:type owl:NamedIndividual ,
+              tmo:TopicMapping ;
+     tmo:hasMappedTopics :TM1_TP1 .
+
+:TM1_TP1 rdf:type owl:NamedIndividual ,
+                  tmo:TopicPair ;
+         tmo:hasTopic :CryptoT1 ,
+                   :SymantecT1 ;
+         tmo:hasDivergenceScore "0.9"^^xsd:double .
+
+
+

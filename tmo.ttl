@@ -4,10 +4,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/jsleeman/ontologies/2019/3/untitled-ontology-9> .
+@base <http://purl.org/tmo#> .
 
-<http://www.semanticweb.org/jsleeman/ontologies/2019/3/untitled-ontology-9> rdf:type owl:Ontology ;
-                                                                             rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
+<http://purl.org/tmo#> rdf:type owl:Ontology ;
+        rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
 
 #################################################################
 #    Object Properties
