@@ -7,7 +7,7 @@
 @base <http://purl.org/tmo#> .
 
 <http://purl.org/tmo#> rdf:type owl:Ontology ;
-        rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
+                        rdfs:comment "This owl ontology is intended to represent topic models.   for more information, see https://github.com/Ebiquity/topic_model_ontology/" .
 
 #################################################################
 #    Object Properties

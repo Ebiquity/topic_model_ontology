@@ -1,125 +1,157 @@
 @prefix : <http://purl.org/tmon/example1#> .
-@prefix tmo: <http://purl.org/tmon#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix tmo: <http://purl.org/tmon#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://purl.org/tmon/example1#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology ;
+   owl:imports <http://purl.org/tmo#> ;
+   rdfs:comment "This is an example of a small graph using concepts from the topic_modeling_ontology.  For more information, see https://github.com/Ebiquity/topic_model_ontology."
+ ] .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
+###  http://purl.org/tmon/example1#Computer
 :Computer rdf:type owl:NamedIndividual ,
                    tmo:KeyWord .
 
+
+###  http://purl.org/tmon/example1#CryptoSec
 :CryptoSec rdf:type owl:NamedIndividual ,
                     tmo:DocumentCollection ;
-           tmo:hasDocument :FooCrypto ;
-           tmo:hasDescription "Arxiv Cryptographic and Security Documents"^^xsd:string .
+           tmo:hasDescription "Arxiv Cryptographic and Security Documents"^^xsd:string ;
+           tmo:hasDocument :FooCrypto .
 
+
+###  http://purl.org/tmon/example1#CryptoT1
 :CryptoT1 rdf:type owl:NamedIndividual ,
                    tmo:Topic ;
           tmo:hasConcept :CyberSecurity ;
-         tmo:hasKeyWord :Mobile .
+          tmo:hasKeyWord :Mobile .
 
+
+###  http://purl.org/tmon/example1#CryptoT1_1
 :CryptoT1_1 rdf:type owl:NamedIndividual ,
                      tmo:TopicScore ;
+            tmo:hasScore "0.8"^^xsd:double ;
             tmo:hasTopicScoreRelationship :CryptoT1 ,
-                                       :CyberSecurity ;
-            tmo:hasScore "0.8"^^xsd:double .
+                                          :CyberSecurity .
 
 
+###  http://purl.org/tmon/example1#CryptoT1_D1_Score
 :CryptoT1_D1_Score rdf:type owl:NamedIndividual ,
                             tmo:DocumentScore ;
                    tmo:hasDocumentScoreRelationship :CryptoT1 ,
-                                                 :FooCrypto ;
+                                                    :FooCrypto ;
                    tmo:hasScore "0.9"^^xsd:float .
 
 
+###  http://purl.org/tmon/example1#CryptoTopicModel1
 :CryptoTopicModel1 rdf:type owl:NamedIndividual ,
                             tmo:TopicModel ;
                    tmo:hasTopic :CryptoT1 .
 
 
+###  http://purl.org/tmon/example1#Crypto_Symantec
 :Crypto_Symantec rdf:type owl:NamedIndividual ,
                           tmo:CrossDomain ;
                  tmo:hasMapping :TM1 .
 
+
+###  http://purl.org/tmon/example1#CrytoT1_2
 :CrytoT1_2 rdf:type owl:NamedIndividual ,
                     tmo:TopicScore ;
+           tmo:hasScore "0.75"^^xsd:double ;
            tmo:hasTopicScoreRelationship :CryptoT1 ,
-                                      :Mobile ;
-           tmo:hasScore "0.75"^^xsd:double .
+                                         :Mobile .
 
 
+###  http://purl.org/tmon/example1#CyberSecurity
 :CyberSecurity rdf:type owl:NamedIndividual ,
                         tmo:Domain_Concept .
 
 
+###  http://purl.org/tmon/example1#FooCrypto
 :FooCrypto rdf:type owl:NamedIndividual ,
                     tmo:Document ;
            tmo:hasConcept :CyberSecurity ;
            tmo:hasKeyWord :Mobile .
 
 
+###  http://purl.org/tmon/example1#FooSymantec
 :FooSymantec rdf:type owl:NamedIndividual ,
                       tmo:Document ;
-             tmo:hasConcept :CyberSecurity ;
-             tmo:hasKeyWord :Mobile ;
              tmo:hasAuthor "Foo Author"^^xsd:string ;
+             tmo:hasConcept :CyberSecurity ;
              tmo:hasDate "2017"^^xsd:string ;
+             tmo:hasKeyWord :Mobile ;
              tmo:hasTitle "Foo Title"^^xsd:string .
 
+
+###  http://purl.org/tmon/example1#Mobile
 :Mobile rdf:type owl:NamedIndividual ,
                  tmo:KeyWord .
 
 
+###  http://purl.org/tmon/example1#Mobile_Attack
 :Mobile_Attack rdf:type owl:NamedIndividual ,
                         tmo:Domain_Concept .
 
 
+###  http://purl.org/tmon/example1#Symantec
 :Symantec rdf:type owl:NamedIndividual ,
                    tmo:DocumentCollection ;
-          tmo:hasDocument :FooSymantec ;
-          tmo:hasDescription "Symantec Documents"^^xsd:string .
+          tmo:hasDescription "Symantec Documents"^^xsd:string ;
+          tmo:hasDocument :FooSymantec .
 
 
+###  http://purl.org/tmon/example1#SymantecT1
 :SymantecT1 rdf:type owl:NamedIndividual ,
                      tmo:Topic ;
             tmo:hasConcept :CyberSecurity ;
             tmo:hasKeyWord :Mobile .
 
+
+###  http://purl.org/tmon/example1#SymantecT1_1
 :SymantecT1_1 rdf:type owl:NamedIndividual ,
                        tmo:TopicScore ;
+              tmo:hasScore "0.75"^^xsd:double ;
               tmo:hasTopicScoreRelationship :CyberSecurity ,
-                                         :SymantecT1 ;
-              tmo:hasScore "0.75"^^xsd:double .
+                                            :SymantecT1 .
 
 
+###  http://purl.org/tmon/example1#SymantecT1_D1_Score
 :SymantecT1_D1_Score rdf:type owl:NamedIndividual ,
                               tmo:DocumentScore ;
                      tmo:hasDocumentScoreRelationship :FooSymantec ,
-                                                   :SymantecT1 ;
+                                                      :SymantecT1 ;
                      tmo:hasScore "0.89"^^xsd:float .
 
 
+###  http://purl.org/tmon/example1#SymantecTopicModel1
 :SymantecTopicModel1 rdf:type owl:NamedIndividual ,
                               tmo:TopicModel ;
                      tmo:hasTopic :SymantecT1 .
 
 
+###  http://purl.org/tmon/example1#TM1
 :TM1 rdf:type owl:NamedIndividual ,
               tmo:TopicMapping ;
      tmo:hasMappedTopics :TM1_TP1 .
 
+
+###  http://purl.org/tmon/example1#TM1_TP1
 :TM1_TP1 rdf:type owl:NamedIndividual ,
                   tmo:TopicPair ;
+         tmo:hasDivergenceScore "0.9"^^xsd:double ;
          tmo:hasTopic :CryptoT1 ,
-                   :SymantecT1 ;
-         tmo:hasDivergenceScore "0.9"^^xsd:double .
+                      :SymantecT1 .
 
 
-
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
