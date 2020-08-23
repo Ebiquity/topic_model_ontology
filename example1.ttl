@@ -19,7 +19,8 @@
 
 ###  http://purl.org/tmon/example1#Computer
 :Computer rdf:type owl:NamedIndividual ,
-                   tmo:KeyWord .
+                   tmo:Keyword ;
+                   tmo:hasText "computer" .
 
 
 ###  http://purl.org/tmon/example1#CryptoSec
@@ -33,11 +34,12 @@
 :CryptoT1 rdf:type owl:NamedIndividual ,
                    tmo:Topic ;
           tmo:hasConcept :CyberSecurity ;
-          tmo:hasKeyWord :Mobile .
+          tmo:hasKeyword :Mobile .
 
 
-###  http://purl.org/tmon/example1#CryptoT1_1
-:CryptoT1_1 rdf:type owl:NamedIndividual ,
+
+###  http://purl.org/tmon/example1#CryptoT1_K1_Score
+:CryptoT1_K1_Score rdf:type owl:NamedIndividual ,
                      tmo:TopicScore ;
             tmo:hasScore "0.8"^^xsd:double ;
             tmo:hasTopicScoreRelationship :CryptoT1 ,
@@ -60,8 +62,8 @@
 
 ###  http://purl.org/tmon/example1#Crypto_Symantec
 :Crypto_Symantec rdf:type owl:NamedIndividual ,
-                          tmo:CrossDomain ;
-                 tmo:hasMapping :TM1 .
+                          tmo:TopicMapping ;
+                 tmo:hasMappedTopics :TM1_TP1 .
 
 
 ###  http://purl.org/tmon/example1#CrytoT1_2
@@ -74,14 +76,31 @@
 
 ###  http://purl.org/tmon/example1#CyberSecurity
 :CyberSecurity rdf:type owl:NamedIndividual ,
-                        tmo:Domain_Concept .
+                        tmo:DomainConcept ;
+                        tmo:hasText "cybersecurity" 
 
 
 ###  http://purl.org/tmon/example1#FooCrypto
 :FooCrypto rdf:type owl:NamedIndividual ,
                     tmo:Document ;
            tmo:hasConcept :CyberSecurity ;
-           tmo:hasKeyWord :Mobile .
+           tmo:hasKeyword :Mobile .
+
+###  http://purl.org/tmon/example1#FooCrypto_CyberSecurity_Freq
+:FooCrypto_CyberSecurity_Freq rdf:type owl:NamedIndividual ,
+                    tmo:KeywordFrequency;
+           tmo:hasKeywordFrequencyRelationship :CyberSecurity ;
+           tmo:hasKeywordFrequencyRelationship :FooCrypto ;
+           tmo:hasFrequency "5"^^xsd:float .
+
+
+###  http://purl.org/tmon/example1#FooCrypto_Mobile_Freq
+:FooCrypto_Mobile_Freq rdf:type owl:NamedIndividual ,
+                    tmo:KeywordFrequency;
+           tmo:hasKeywordFrequencyRelationship :Mobile ;
+           tmo:hasKeywordFrequencyRelationship :FooCrypto ;
+           tmo:hasFrequency "4"^^xsd:float .
+
 
 
 ###  http://purl.org/tmon/example1#FooSymantec
@@ -90,18 +109,20 @@
              tmo:hasAuthor "Foo Author"^^xsd:string ;
              tmo:hasConcept :CyberSecurity ;
              tmo:hasDate "2017"^^xsd:string ;
-             tmo:hasKeyWord :Mobile ;
+             tmo:hasKeyword :Mobile ;
              tmo:hasTitle "Foo Title"^^xsd:string .
 
 
 ###  http://purl.org/tmon/example1#Mobile
 :Mobile rdf:type owl:NamedIndividual ,
-                 tmo:KeyWord .
+                 tmo:Keyword ;
+                 tmo:hasText "mobile" .
 
 
 ###  http://purl.org/tmon/example1#Mobile_Attack
 :Mobile_Attack rdf:type owl:NamedIndividual ,
-                        tmo:Domain_Concept .
+                        tmo:DomainConcept ;
+                        tmo:hasText "mobile attack" 
 
 
 ###  http://purl.org/tmon/example1#Symantec
@@ -115,11 +136,11 @@
 :SymantecT1 rdf:type owl:NamedIndividual ,
                      tmo:Topic ;
             tmo:hasConcept :CyberSecurity ;
-            tmo:hasKeyWord :Mobile .
+            tmo:hasKeyword :Mobile .
 
 
-###  http://purl.org/tmon/example1#SymantecT1_1
-:SymantecT1_1 rdf:type owl:NamedIndividual ,
+###  http://purl.org/tmon/example1#SymantecT1_K1_Score
+:SymantecT1_K1_Score rdf:type owl:NamedIndividual ,
                        tmo:TopicScore ;
               tmo:hasScore "0.75"^^xsd:double ;
               tmo:hasTopicScoreRelationship :CyberSecurity ,
@@ -139,11 +160,6 @@
                               tmo:TopicModel ;
                      tmo:hasTopic :SymantecT1 .
 
-
-###  http://purl.org/tmon/example1#TM1
-:TM1 rdf:type owl:NamedIndividual ,
-              tmo:TopicMapping ;
-     tmo:hasMappedTopics :TM1_TP1 .
 
 
 ###  http://purl.org/tmon/example1#TM1_TP1

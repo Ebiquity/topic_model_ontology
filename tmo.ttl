@@ -13,6 +13,7 @@
 #    Object Properties
 #################################################################
 
+
 ###  http://purl.org/tmo#hasCollection
 :hasCollection rdf:type owl:ObjectProperty ;
                rdfs:domain :TopicModel ;
@@ -26,7 +27,7 @@
                                         :Topic
                                       )
                         ] ;
-            rdfs:range :Domain_Concept .
+            rdfs:range :DomainConcept .
 
 
 ###  http://purl.org/tmo#hasDocument
@@ -35,36 +36,15 @@
              rdfs:range :Document .
 
 
-###  http://purl.org/tmo#hasDocumentScoreRelationship
-:hasDocumentScoreRelationship rdf:type owl:ObjectProperty ;
-                              rdfs:domain :DocumentScore ;
-                              rdfs:range [ rdf:type owl:Class ;
-                                           owl:unionOf ( :Document
-                                                         :Topic
-                                                       )
-                                         ] .
 
-
-###  http://purl.org/tmo#hasDomain1
-:hasDomain1 rdf:type owl:ObjectProperty ;
-            rdfs:domain :CrossDomain ;
-            rdfs:range :TopicModel .
-
-
-###  http://purl.org/tmo#hasDomain2
-:hasDomain2 rdf:type owl:ObjectProperty ;
-            rdfs:domain :CrossDomain ;
-            rdfs:range :TopicModel .
-
-
-###  http://purl.org/tmo#hasKeyWord
-:hasKeyWord rdf:type owl:ObjectProperty ;
+###  http://purl.org/tmo#hasKeyword
+:hasKeyword rdf:type owl:ObjectProperty ;
             rdfs:domain [ rdf:type owl:Class ;
                           owl:unionOf ( :Document
                                         :Topic
                                       )
                         ] ;
-            rdfs:range :KeyWord .
+            rdfs:range :Keyword .
 
 
 ###  http://purl.org/tmo#hasMappedTopics
@@ -73,35 +53,53 @@
                  rdfs:range :TopicPair .
 
 
-###  http://purl.org/tmo#hasMapping
-:hasMapping rdf:type owl:ObjectProperty ;
-            rdfs:domain :CrossDomain ;
-            rdfs:range :TopicMapping .
-
-
 ###  http://purl.org/tmo#hasTopic
 :hasTopic rdf:type owl:ObjectProperty ;
-          rdfs:domain [ rdf:type owl:Class ;
-                        owl:unionOf ( :TopicModel
-                                      :TopicPair
-                                    )
-                      ] ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :TopicPair
+                                        :TopicModel
+                                      )
+                        ] ;
           rdfs:range :Topic .
-
 
 ###  http://purl.org/tmo#hasTopicScoreRelationship
 :hasTopicScoreRelationship rdf:type owl:ObjectProperty ;
-                           rdfs:domain :TopicScore ;
-                           rdfs:range [ rdf:type owl:Class ;
-                                        owl:unionOf ( :KeyWord
-                                                      :Topic
-                                                    )
-                                      ] .
+          rdfs:domain :TopicScore ;
+          rdfs:range :[ rdf:type owl:Class ;
+                          owl:intersection ( :Keyword
+                                             :Topic
+                                      )
+                        ].
+
+
+###  http://purl.org/tmo#hasDocumentScoreRelationship
+:hasTopicScoreRelationship rdf:type owl:ObjectProperty ;
+          rdfs:domain :DocumentScore ;
+          rdfs:range :[ rdf:type owl:Class ;
+                          owl:intersection ( :Topic
+                                             :Document
+                                      )
+                        ].
+
+###  http://purl.org/tmo#hasKeywordFrequencyRelationship
+:hasKeywordFrequencyRelationship rdf:type owl:ObjectProperty ;
+          rdfs:domain :KeywordFrequency ;
+          rdfs:range :[ rdf:type owl:Class ;
+                          owl:intersection ( :Keyword
+                                             :Document
+                                      )
+                        ].
+
 
 
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://purl.org/tmo#hasAlias
+:hasAuthor rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Keyword ;
+           rdfs:range xsd:string .
 
 ###  http://purl.org/tmo#hasAuthor
 :hasAuthor rdf:type owl:DatatypeProperty ;
@@ -137,12 +135,25 @@
                     rdfs:domain :TopicPair ;
                     rdfs:range xsd:double .
 
+###  http://purl.org/tmo#hasFrequency
+:hasFrequency rdf:type owl:DatatypeProperty ;
+          rdfs:domain :KeywordFrequency ;
+          rdfs:range xsd:double .
 
 ###  http://purl.org/tmo#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
-          rdfs:domain :Score ;
+          rrdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :TopicScore
+                                     :DocumentScore
+                                   )
+                     ] ;
           rdfs:range xsd:double .
 
+
+###  http://purl.org/tmo#hasText
+:hasTitle rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Keyword ;
+          rdfs:range xsd:string .
 
 ###  http://purl.org/tmo#hasTitle
 :hasTitle rdf:type owl:DatatypeProperty ;
@@ -160,31 +171,28 @@
 #    Classes
 #################################################################
 
-###  http://purl.org/tmo#CrossDomain
-:CrossDomain rdf:type owl:Class .
 
+###  http://purl.org/tmo#DocumentCollection
+:DocumentCollection rdf:type owl:Class .
 
 ###  http://purl.org/tmo#Document
 :Document rdf:type owl:Class .
 
 
-###  http://purl.org/tmo#DocumentCollection
-:DocumentCollection rdf:type owl:Class .
+###  http://purl.org/tmo#DomainConcept
+:DomainConcept rdf:type owl:Class ;
+                rdfs:subClassOf :Keyword .
 
 
 ###  http://purl.org/tmo#DocumentScore
 :DocumentScore rdf:type owl:Class ;
-               rdfs:subClassOf :Score .
+            rdfs:subClassOf :Score .
 
+###  http://purl.org/tmo#Keyword
+:Keyword rdf:type owl:Class .
 
-###  http://purl.org/tmo#Domain_Concept
-:Domain_Concept rdf:type owl:Class ;
-                rdfs:subClassOf :KeyWord .
-
-
-###  http://purl.org/tmo#KeyWord
-:KeyWord rdf:type owl:Class .
-
+###  http://purl.org/tmo#KeywordFrequency
+:KeywordFrequency rdf:type owl:Class .
 
 ###  http://purl.org/tmo#Score
 :Score rdf:type owl:Class .
@@ -209,6 +217,5 @@
 ###  http://purl.org/tmo#TopicScore
 :TopicScore rdf:type owl:Class ;
             rdfs:subClassOf :Score .
-
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
