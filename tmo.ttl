@@ -142,7 +142,7 @@
 
 ###  http://purl.org/tmo#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
-          rrdfs:domain [ rdf:type owl:Class ;
+          rdfs:domain [ rdf:type owl:Class ;
                        owl:unionOf ( :TopicScore
                                      :DocumentScore
                                    )
