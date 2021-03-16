@@ -1,4 +1,4 @@
-@prefix : <http://purl.org/tmo#> .
+@prefix : <http://purl.org/tmon#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -65,7 +65,7 @@
 ###  http://purl.org/tmo#hasTopicScoreRelationship
 :hasTopicScoreRelationship rdf:type owl:ObjectProperty ;
           rdfs:domain :TopicScore ;
-          rdfs:range :[ rdf:type owl:Class ;
+          rdfs:range [ rdf:type owl:Class ;
                           owl:intersection ( :Keyword
                                              :Topic
                                       )
@@ -75,7 +75,7 @@
 ###  http://purl.org/tmo#hasDocumentScoreRelationship
 :hasTopicScoreRelationship rdf:type owl:ObjectProperty ;
           rdfs:domain :DocumentScore ;
-          rdfs:range :[ rdf:type owl:Class ;
+          rdfs:range [ rdf:type owl:Class ;
                           owl:intersection ( :Topic
                                              :Document
                                       )
@@ -84,7 +84,7 @@
 ###  http://purl.org/tmo#hasKeywordFrequencyRelationship
 :hasKeywordFrequencyRelationship rdf:type owl:ObjectProperty ;
           rdfs:domain :KeywordFrequency ;
-          rdfs:range :[ rdf:type owl:Class ;
+          rdfs:range [ rdf:type owl:Class ;
                           owl:intersection ( :Keyword
                                              :Document
                                       )
